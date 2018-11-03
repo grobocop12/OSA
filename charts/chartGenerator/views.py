@@ -18,5 +18,5 @@ def alfa(request):
     return HttpResponse("<b>Oto kurwa nadchodzi zagłada</b>")
 
 def base(request):
-    html = wykres.plot_hist()
+    html = wykres.plot_spect()
     return render(request,'chartGenerator/chart.html',{'chart_figure':html,})
