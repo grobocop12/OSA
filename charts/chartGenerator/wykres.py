@@ -12,6 +12,8 @@ def plot_chart():
     time = numpy.arange(0,len(samples),dtype = float)
     time = numpy.divide(time, sample_rate)
     fig = plt.figure()
+    fig.set_figwidth(12.8)
+    fig.set_figheight(7.2)
     plt.plot(time,samples)
     plt.xlabel('Time [s]')
     plt.ylabel('Pressure [Pa]')
