@@ -11,10 +11,11 @@ def index(request):
 
 
 def chart(request):
+    size = [8.4, 2]
     sample_rate, samples = wykres.load_data()
-    signal = wykres.plot_signal(sample_rate,samples)
-    spect = wykres.plot_spect(sample_rate,samples)
-    histogram = wykres.plot_hist(sample_rate,samples)
+    signal = wykres.plot_signal(sample_rate,samples,size)
+    spect = wykres.plot_spect(sample_rate,samples,size)
+    histogram = wykres.plot_hist(sample_rate,samples,size)
     return render(request,'chartGenerator/chart.html',
                   {'signal':signal,'spect':spect, 'histogram': histogram})
 
