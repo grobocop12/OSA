@@ -11,7 +11,7 @@ def index(request):
 
 
 def chart(request):
-    html = wykres.plot_chart()
+    html = wykres.plot_chart() +  wykres.plot_hist() + wykres.plot_spect() + "<marquee><b> Kek hehehehehe</b></marquee>"
     return render(request,'chartGenerator/chart.html',{'chart_figure':html,})
 
 def alfa(request):
