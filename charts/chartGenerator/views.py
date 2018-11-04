@@ -24,7 +24,8 @@ def alfa(request):
 
 
 def base(request):
+    size = [12, 6]
     sample_rate, samples = wykres.load_data()
-    spect = wykres.plot_spect(sample_rate,samples)
-    return render(request,'chartGenerator/chart.html',{'spect':spect,})
+    spect = wykres.plot_spect(sample_rate,samples,size)
+    return render(request,'chartGenerator/spectogram.html',{'spect':spect,})
 
