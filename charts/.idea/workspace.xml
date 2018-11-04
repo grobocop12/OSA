@@ -44,8 +44,8 @@
       <file leaf-file-name="wykres.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/chartGenerator/wykres.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="175" column="22" selection-start-line="175" selection-start-column="22" selection-end-line="175" selection-end-column="22" />
+            <state relative-caret-position="65">
+              <caret line="181" column="22" lean-forward="true" selection-start-line="181" selection-start-column="22" selection-end-line="181" selection-end-column="22" />
               <folding>
                 <element signature="e#21#55#0" expanded="true" />
               </folding>
@@ -394,8 +394,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chartGenerator/wykres.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="175" column="22" selection-start-line="175" selection-start-column="22" selection-end-line="175" selection-end-column="22" />
+        <state relative-caret-position="65">
+          <caret line="181" column="22" lean-forward="true" selection-start-line="181" selection-start-column="22" selection-end-line="181" selection-end-column="22" />
           <folding>
             <element signature="e#21#55#0" expanded="true" />
           </folding>
