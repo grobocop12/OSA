@@ -11,12 +11,18 @@ def index(request):
 
 
 def chart(request):
-    html = wykres.plot_spect() + "<marquee><b> Kek hehehehehe</b></marquee>" +wykres.plot_zoom()
-    return render(request,'chartGenerator/chart.html',{'chart_figure':html,})
+    sample_rate, samples = wykres.load_data()
+    signal = wykres.plot_signal(sample_rate,samples)
+    spect = wykres.plot_spect(sample_rate,samples)
+    histogram = wykres.plot_hist(sample_rate,samples)
+    return render(request,'chartGenerator/chart.html',
+                  {'signal':signal,'spect':spect, 'histogram': histogram})
 
 def alfa(request):
     return HttpResponse("<b>Oto kurwa nadchodzi zagłada</b>")
 
+'''
 def base(request):
     html = wykres.plot_spect()
     return render(request,'chartGenerator/chart.html',{'chart_figure':html,})
+'''
