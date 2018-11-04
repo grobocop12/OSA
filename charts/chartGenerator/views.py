@@ -21,8 +21,9 @@ def chart(request):
 def alfa(request):
     return HttpResponse("<b>Oto kurwa nadchodzi zagłada</b>")
 
-'''
+
 def base(request):
-    html = wykres.plot_spect()
-    return render(request,'chartGenerator/chart.html',{'chart_figure':html,})
-'''
+    sample_rate, samples = wykres.load_data()
+    spect = wykres.plot_spect(sample_rate,samples)
+    return render(request,'chartGenerator/chart.html',{'spect':spect,})
+
