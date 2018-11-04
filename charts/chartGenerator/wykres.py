@@ -38,7 +38,7 @@ def plot_hist(sample_rate , samples,size):
     fig = plt.figure()
     fig.set_figwidth(width)
     fig.set_figheight(height)
-    plt.hist(samples,density=5,color='g')
+    plt.hist(samples,70,density=5,color='g')
     plt.title('Histogram')
     plt.grid()
     plt.tight_layout()
