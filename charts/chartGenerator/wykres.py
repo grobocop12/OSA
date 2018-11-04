@@ -51,8 +51,8 @@ def plot_spect():
     time = numpy.divide(time, fs)
     fig, (ax1, ax2, ax3) = plt.subplots(nrows=3)  # poszczególne zmienne
 
-    fig.set_figwidth(6.4)
-    fig.set_figheight(3.2)
+    fig.set_figwidth(12.4)
+    fig.set_figheight(12.2)
 
     ax1.plot(time, samples)  #  pierwsza zmienna
 
@@ -167,10 +167,19 @@ def zoom_effect02(ax1, ax2, **kwargs):
 
 
 def plot_zoom():
-    fig = plt.figure(1, figsize=(5, 5))
+    fs, samples = wavfile.read('Bit - Hacknet OST - 08 You Got Mail.wav')
+    NFFT = 1024  # the length of the windowing segments
+    time = numpy.arange(0, len(samples), dtype=float)
+    time = numpy.divide(time, fs)
+
+
+    fig = plt.figure(1)
+    fig.set_figwidth(6.4)
+    fig.set_figheight(3.2)
     ax1 = plt.subplot(221)
     ax2 = plt.subplot(212)
-    ax2.set_xlim(0, 1)
+    ax2.specgram(samples, NFFT=NFFT, Fs=fs, noverlap=0)
+    ax1.set_xlim(0, 1)
     ax2.set_xlim(0, 5)
     zoom_effect01(ax1, ax2, 0.2, 0.8)
 
