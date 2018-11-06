@@ -33,6 +33,12 @@ def base(request):
     spect = wykres.plot_spect(sample_rate,samples,size)
     return render(request,'chartGenerator/spectogram.html',{'spect':spect,})
 
+def test(request):
+    size = [12, 6]
+    sample_rate, samples = wykres.load_data()
+    coś = wykres.test_plot(sample_rate,samples,size)
+    return render(request,'chartGenerator/test.html',{'test':coś,})
+
 def upload_file(request):
     if request.method == 'POST':
         form = Document(request.POST, request.FILES)

@@ -23,7 +23,9 @@ def plot_signal(sample_rate, samples,size):
     fig = plt.figure()
     fig.set_figwidth(width)
     fig.set_figheight(height)
-    plt.plot(time,samples)
+    f_poly = signal.decimate(samples,20,  ftype='fir')
+    time2 = signal.decimate(time, 20)
+    plt.plot(time2,f_poly)
     plt.title('Sygnał')
     plt.xlabel('Czas [s]')
     plt.ylabel('Ciśnienie [Pa]')
@@ -65,3 +67,23 @@ def plot_spect(sample_rate , samples,size):
     return mpld3.fig_to_html(fig)
 
 
+def test_plot(sample_rate , samples,size):
+    [width, height] = size
+    NFFT = 1024  # the length of the windowing segments
+    time = numpy.arange(0, len(samples), dtype=float)
+    time = numpy.divide(time, sample_rate)
+    f_poly = signal.decimate(samples, 20, ftype='fir')
+    time2 = signal.decimate(time, 20)
+
+    fig = plt.figure()
+
+
+
+    t = numpy.arange(0, 10, 0.01)
+
+    ax1 = plt.subplot(211)
+    ax1.plot(time2, f_poly)
+
+    ax2 = plt.subplot(212, sharex=ax1)
+    ax2.specgram(samples, NFFT=NFFT, Fs=sample_rate, noverlap=0)  # Druga zmienna
+    return mpld3.fig_to_html(fig)
