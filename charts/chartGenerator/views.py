@@ -15,7 +15,7 @@ def index(request):
 
 
 def chart(request):
-    size = [8.4, 2]
+    size = (8.4, 2)
     sample_rate, samples = wykres.load_data()
     signal = wykres.plot_signal(sample_rate,samples,size)
     spect = wykres.plot_spect(sample_rate,samples,size)
@@ -28,13 +28,13 @@ def alfa(request):
 
 
 def base(request):
-    size = [12, 6]
+    size = (12, 6)
     sample_rate, samples = wykres.load_data()
     spect = wykres.plot_spect(sample_rate,samples,size)
     return render(request,'chartGenerator/spectogram.html',{'spect':spect,})
 
 def test(request):
-    size = [12, 6]
+    size = (12, 6)
     sample_rate, samples = wykres.load_data()
     coś = wykres.test_plot(sample_rate,samples,size)
     return render(request,'chartGenerator/test.html',{'test':coś,})
@@ -51,7 +51,7 @@ def upload_file(request):
     return render(request, 'chartGenerator/upload.html', {'form': form})
 
 def poligon(request):
-    size = [12, 6]
+    size = (12, 6)
     sample_rate, samples = wykres.load_data()
     cos = wykres.poligon()
     return render(request,'chartGenerator/test.html',{'test':cos,})
