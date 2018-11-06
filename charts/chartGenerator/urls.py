@@ -8,5 +8,6 @@ urlpatterns = [
     path('chart/',views.chart, name= 'chart'),
     path('alfa/',views.alfa, name= 'alfa'),
     path('base/',views.base, name= 'base'),
-    path('test/',views.test,name = 'test')
+    path('test/',views.test,name = 'test'),
+    path('poligon/',views.poligon,name = 'poligon'),
     ]
