@@ -53,7 +53,7 @@ def upload_file(request):
 def poligon(request):
     size = (12, 6)
     sample_rate, samples = wykres.load_data()
-    cos = wykres.poligon()
-    return render(request,'chartGenerator/test.html',{'test':cos,})
+    cos, thing = wykres.poligon()
+    return render(request,'chartGenerator/poligon.html',{'test':cos,'test2':thing})
     
 

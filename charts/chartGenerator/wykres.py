@@ -13,6 +13,10 @@ from matplotlib.transforms import (
 from mpl_toolkits.axes_grid1.inset_locator import (
     BboxPatch, BboxConnector, BboxConnectorPatch)
 
+from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
+from mpl_toolkits.axes_grid1.inset_locator import mark_inset
+
+
 class HelloWorld(plugins.PluginBase):  # inherit from PluginBase
     """Hello World plugin"""
     
@@ -134,57 +138,27 @@ def test_plot(sample_rate , samples,size):
     return mpld3.fig_to_html(fig)
 
 def poligon():
-    
+    figsrc, axsrc = plt.subplots()
+    figzoom, axzoom = plt.subplots()
+    axsrc.set(xlim=(0, 1), ylim=(0, 1), autoscale_on=False,
+              title='Click to zoom')
+    axzoom.set(xlim=(0.45, 0.55), ylim=(0.4, 0.6), autoscale_on=False,
+               title='Zoom window')
 
-    # Define some CSS to control our custom labels
-    css = """
-    table
-    {
-      border-collapse: collapse;
-    }
-    th
-    {
-      color: #ffffff;
-      background-color: #000000;
-    }
-    td
-    {
-      background-color: #cccccc;
-    }
-    table, th, td
-    {
-      font-family:Arial, Helvetica, sans-serif;
-      border: 1px solid black;
-      text-align: right;
-    }
-    """
+    x, y, s, c = np.random.rand(4, 200)
+    s *= 200
 
-    fig, ax = plt.subplots()
-    ax.grid(True, alpha=0.3)
+    axsrc.plot(x, y, s, c)
+    axzoom.plot(x, y, s, c)
 
-    N = 50
-    df = pd.DataFrame(index=range(N))
-    df['x'] = np.random.randn(N)
-    df['y'] = np.random.randn(N)
-    df['z'] = np.random.randn(N)
 
-    labels = []
-    for i in range(N):
-        label = df.ix[[i], :].T
-        label.columns = ['Row {0}'.format(i)]
-        # .to_html() is unicode; so make leading 'u' go away with str()
-        labels.append(str(label.to_html()))
+    def onpress(event):
+        if event.button != 1:
+            return
+        x, y = event.xdata, event.ydata
+        axzoom.set_xlim(x - 0.1, x + 0.1)
+        axzoom.set_ylim(y - 0.1, y + 0.1)
+        figzoom.canvas.draw()
 
-    points = ax.plot(df.x, df.y, 'o', color='b',
-                     mec='k', ms=15, mew=1, alpha=.6)
-
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_title('HTML tooltips', size=20)
-
-    tooltip = plugins.PointHTMLTooltip(points[0], labels,
-                                       voffset=10, hoffset=10, css=css)
-    plugins.connect(fig, tooltip)
-
-    return mpld3.fig_to_html(fig)
-
+    figsrc.canvas.mpl_connect('button_press_event', onpress)
+    return [mpld3.fig_to_html(figsrc),mpld3.fig_to_html(figzoom)]
