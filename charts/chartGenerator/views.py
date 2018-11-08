@@ -51,7 +51,7 @@ def upload_file(request):
     return render(request, 'chartGenerator/upload.html', {'form': form})
 
 def poligon(request):
-    size = (14, 8)
+    size = (16, 8)
     signal, time = wykres.poligon()
     return render(request,'chartGenerator/poligon.html',{'time':time.tolist(),'signal':signal.tolist()})
     
