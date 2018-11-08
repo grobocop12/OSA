@@ -107,11 +107,7 @@ def test_plot(sample_rate , samples,size):
     time = np.divide(time, sample_rate)
     f_poly = signal.decimate(samples, 20, ftype='fir')
     time2 = signal.decimate(time, 20)
-
     fig = plt.figure()
-
-
-
     t = np.arange(0, 10, 0.01)
 
     ax1 = plt.subplot(211)
@@ -123,6 +119,7 @@ def test_plot(sample_rate , samples,size):
 
 def poligon():
     sample_rate , samples = load_data()
+    samples = signal.decimate(samples,10,  ftype='fir')
     N = len(samples)
     T = N/sample_rate
     dT = T/len(samples)

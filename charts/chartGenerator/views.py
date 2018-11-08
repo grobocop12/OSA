@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Document
 from .forms import DocumentForm
+import json
 
 
 
@@ -53,6 +54,6 @@ def upload_file(request):
 def poligon(request):
     size = (14, 8)
     signal, time = wykres.poligon()
-    return render(request,'chartGenerator/poligon.html',{'time':time.tolist(),'signal':signal.tolist()})
+    return render(request,'chartGenerator/poligon.html',{'time':json.dumps(time.tolist()),'signal':json.dumps(signal.tolist())})
     
 

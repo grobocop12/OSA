@@ -1,13 +1,24 @@
 <head>
-               <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
-<div id="tester" style="width:800px;height:600px;">
+<div id="tester" style="width:100wv;height:100hv;">
 <script>
 	TESTER = document.getElementById('tester');
-	Plotly.plot( TESTER, [{
-	x: {{time}},
-	y: {{signal}}}], {
-	margin: { t: 0 } } );
+
+	 var data = [{
+			x: {{time}},
+			y: {{signal}}
+			}];
+
+
+	var layout = {
+	xaxis: {
+            rangeslider: {}
+        }
+	};
+
+
+	Plotly.plot( TESTER, data,layout);
 </script>
 </div>
