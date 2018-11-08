@@ -15,6 +15,7 @@ from mpl_toolkits.axes_grid1.inset_locator import (
 
 from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
 from mpl_toolkits.axes_grid1.inset_locator import mark_inset
+import json
 
 
 class HelloWorld(plugins.PluginBase):  # inherit from PluginBase
@@ -121,27 +122,10 @@ def test_plot(sample_rate , samples,size):
     return mpld3.fig_to_html(fig)
 
 def poligon():
-    figsrc, axsrc = plt.subplots()
-    figzoom, axzoom = plt.subplots()
-    axsrc.set(xlim=(0, 1), ylim=(0, 1), autoscale_on=False,
-              title='Click to zoom')
-    axzoom.set(xlim=(0.45, 0.55), ylim=(0.4, 0.6), autoscale_on=False,
-               title='Zoom window')
-
-    x, y, s, c = np.random.rand(4, 200)
-    s *= 200
-
-    axsrc.plot(x, y, s, c)
-    axzoom.plot(x, y, s, c)
-
-
-    def onpress(event):
-        if event.button != 1:
-            return
-        x, y = event.xdata, event.ydata
-        axzoom.set_xlim(x - 0.1, x + 0.1)
-        axzoom.set_ylim(y - 0.1, y + 0.1)
-        figzoom.canvas.draw()
-
-    figsrc.canvas.mpl_connect('button_press_event', onpress)
-    return [mpld3.fig_to_html(figsrc),mpld3.fig_to_html(figzoom)]
+    sample_rate , samples = load_data()
+    N = len(samples)
+    T = N/sample_rate
+    dT = T/len(samples)
+    time = np.arange(0,len(samples),dtype = float)
+    time = np.multiply(time,dT)
+    return samples, time
