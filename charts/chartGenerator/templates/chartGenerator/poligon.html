@@ -8,12 +8,12 @@
 
 	{% if rawData %}
 	var rawData = {{rawData}};
-	{%endif%}
+	{% endif %}
 	
 	
 	var plot = document.getElementById('tester');
 	
-	var counter = 0;
+	//var counter = 0;
 
 	 var data = [{
 			x: {{time}},
@@ -23,16 +23,14 @@
 
 
 	var layout = {
-	title:"Audio signal",
+	title:'Audio signal',
 	xaxis: {
 			title:"Time [s]",
             rangeslider: {}
 
         	},
-	margin: { t: 0 }
-
-        },
-		yaxis: {
+	margin: { t: 0 },
+	yaxis: {
 			title:"Pressure [Pa]"
         },
 		 shapes: []
@@ -44,27 +42,29 @@
 	
 	plot.on('plotly_click', function(data){
 	var pts = '';
-    for(var i=0; i < data.points.length; i++){
-        annotate_text = data.points[i].x ;
+	for(var i=0; i < data.points.length; i++){
+        pts = data.points[i].x ;
 		
 	//alert('Closest point clicked:\n\n'+annotate_text);
 	
-       var shapes = [{
-    type: 'line',
-    x0: annotate_text,
-    y0: 0,
-    x1: annotate_text,
-    yref: 'paper',
-    y1: 1,
-    line: {
+	var shapes = plot.layout.shapes;
+	shapes.push(
+	{
+    	 type: 'line',
+   	 x0: pts,
+   	 y0: 0,
+  	 x1: pts,
+  	 yref: 'paper',
+   	 y1: 1,
+   	 line: {
       color: 'red',
       width: 1.5,
       dash: 'dot'
-    }
-  }];
-        Plotly.relayout('tester',{shapes: shapes})
-    }
-});
+    	}
+  	});
 
-</script>
+        Plotly.relayout('tester',{shapes: shapes})
+    	}
+	});
+
 </script>
