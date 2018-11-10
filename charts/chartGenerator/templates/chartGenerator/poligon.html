@@ -2,20 +2,22 @@
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
-<div id="tester" style="width:100wv;height:100hv;">
+<div id="tester" style="width:100vw;height:100vh;">
 <script>
 	TESTER = document.getElementById('tester');
 
 	 var data = [{
 			x: {{time}},
-			y: {{signal}}
+			y: {{signal}},
+			mode:'lines'
 			}];
 
 
 	var layout = {
 	xaxis: {
             rangeslider: {}
-        }
+        	},
+	margin: { t: 0 }
 	};
 
 
