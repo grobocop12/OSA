@@ -7,13 +7,13 @@
 <script>
 
 	{% if rawData %}
-	var rawData = {{rawData}};
+		var rawData = {{rawData}};
 	{% endif %}
 	
 	
 	var plot = document.getElementById('tester');
 	
-	//var counter = 0;
+	var counter = 0;
 
 	 var data = [{
 			x: {{time}},
@@ -40,31 +40,42 @@
 
 	Plotly.plot( plot, data,layout);
 	
-	plot.on('plotly_click', function(data){
+	plot.on('plotly_click', function(data)
+	{
 	var pts = '';
-	for(var i=0; i < data.points.length; i++){
-        pts = data.points[i].x ;
+	for(var i=0; i < data.points.length; i++)
+		{
+	        pts = data.points[i].x ;
 		
 	//alert('Closest point clicked:\n\n'+annotate_text);
-	
-	var shapes = plot.layout.shapes;
-	shapes.push(
-	{
-    	 type: 'line',
-   	 x0: pts,
-   	 y0: 0,
-  	 x1: pts,
-  	 yref: 'paper',
-   	 y1: 1,
-   	 line: {
-      color: 'red',
-      width: 1.5,
-      dash: 'dot'
-    	}
-  	});
+		var shapes = plot.layout.shapes;
+		if(counter < 2)
+			{
+		shapes.push(
+				{
+			    	 type: 'line',
+			   	 x0: pts,
+			   	 y0: 0,
+			  	 x1: pts,
+			  	 yref: 'paper',
+				 y1: 1,
+			   	 line: {
+				      	color: 'red',
+				      	width: 1.5,
+				     	 dash: 'dot'
+			    		}
+			  	});
 
-        Plotly.relayout('tester',{shapes: shapes})
-    	}
+	       
+				counter++;
+			}
+			else
+			{
+				shapes =[];
+				counter = 0;
+			}
+			 Plotly.relayout('tester',{shapes: shapes});
+    		}
 	});
 
 </script>
