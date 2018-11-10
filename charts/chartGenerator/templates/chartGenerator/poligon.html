@@ -7,6 +7,12 @@
 
 
 <script>
+
+	{% if rawData %}
+	var rawData = {{rawData}};
+	{%endif%}
+	
+	
 	var plot = document.getElementById('tester');
 	
 	var counter = 0;
@@ -50,7 +56,7 @@
     yref: 'paper',
     y1: 1,
     line: {
-      color: 'grey',
+      color: 'red',
       width: 1.5,
       dash: 'dot'
     }
