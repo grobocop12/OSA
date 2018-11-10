@@ -52,8 +52,9 @@ def upload_file(request):
     return render(request, 'chartGenerator/upload.html', {'form': form})
 
 def poligon(request):
-    size = (14, 8)
+    size = (16, 8)
+    sample_rate, samples = wykres.load_data()
     signal, time = wykres.poligon()
-    return render(request,'chartGenerator/poligon.html',{'time':json.dumps(time.tolist()),'signal':json.dumps(signal.tolist())})
+    return render(request,'chartGenerator/poligon.html',{'rawData':json.dumps(samples.tolist()),'time':json.dumps(time.tolist()),'signal':json.dumps(signal.tolist())})
     
 

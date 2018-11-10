@@ -119,10 +119,13 @@ def test_plot(sample_rate , samples,size):
 
 def poligon():
     sample_rate , samples = load_data()
-    samples = signal.decimate(samples,10,  ftype='fir')
     N = len(samples)
     T = N/sample_rate
+    samples = signal.decimate(samples,10,  ftype='fir')
+    N = len(samples)
     dT = T/len(samples)
     time = np.arange(0,len(samples),dtype = float)
     time = np.multiply(time,dT)
+    
+   
     return samples, time
