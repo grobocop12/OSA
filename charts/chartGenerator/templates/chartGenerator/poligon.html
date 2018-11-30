@@ -15,7 +15,7 @@
 	
 	var counter = 0;
 
-	 var data = [{
+        var data = [{
 			x: {{time}},
 			y: {{signal}},
 			mode:'lines'
@@ -39,6 +39,7 @@
 
 
 	Plotly.plot( plot, data,layout);
+
 	
 	plot.on('plotly_click', function(data)
 	{
