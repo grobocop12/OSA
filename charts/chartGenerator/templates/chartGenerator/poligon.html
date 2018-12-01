@@ -1,9 +1,53 @@
 <head>
-	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <div id="tester" style="width:100%;height:75%;"/>
+<div id="waveform"></div>
+<div id="wave-spectrogram"></div>
+<script>
+    var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'violet',
+    progressColor: 'purple'
+
+});
+
+    wavesurfer.load('http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3');
+
+    wavesurfer.init({
+  // your options here
+});
+    wavesurfer.on('ready', function () {
 
 
+});
+    var spectrogram = Object.create(WaveSurfer.Spectrogram);
+  spectrogram.init({
+    wavesurfer: wavesurfer,
+    container: "#wave-spectrogram",
+    fftSamples: 1024,
+    labels: true
+  });
+  spectrogram.on()
+
+
+
+    function Start()
+    {
+        wavesurfer.play();
+    }
+    function Stop()
+    {
+        wavesurfer.pause();
+    }
+
+
+</script>
+
+<button onclick="Start()">Start</button>
+<button onclick="Stop()">Stop</button>
 <script>
 
 	{% if rawData %}
