@@ -1,0 +1,498 @@
+/*
+ * master.css
+ *
+ * Copyright (C) 2016  Moritz Balter, Vlad Paul, Sascha Bilert
+ * IHA @ Jade Hochschule applied licence see EOF
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * contact: moritz.balters@student.jade-hs.de
+ * contact: sascha.bilert@student.jade-hs.de
+ * contact: vlad.paul@student.jade-hs.de
+ */
+
+/* Default parameters for the page*/
+body {
+    min-width: 1200px;
+    position: relative;
+    font-family: Verdana;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: -8px;
+}
+
+/*CSS code for the header*/
+header {
+    background: lightgray;
+    width: 800px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: 1.5px solid gray;
+    height: 145px;
+}
+/*Style for all titles h1*/
+h1 {
+    text-align: center;
+    font-size: 25px;
+    padding-top: 20px;
+}
+
+/* Links to the other webpages*/
+a.link:link, a.link:visited {
+    padding: 10px 20px;
+    display: inline-block;
+    text-decoration: blink;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: black;
+    text-shadow: black;
+    font-size: 20px;
+    font-weight: normal;;
+}
+a.link:hover {
+    background-color: grey;
+    color: white;
+
+}
+a.link:active {
+    box-shadow: #666;
+    transform: translateY(4px);
+}
+.currentpage {
+    list-style-type: none;
+    border-bottom: solid 4px black;
+}
+
+img.githubribbon {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    border: 0px;
+}
+
+img.githubribbon#githubribbonmain {
+      position: absolute;
+      margin-right: -20px;
+}
+
+/*Change style when user points on buttons*/
+.audioInput+label:hover, .playPause:hover, .stop:hover, select:hover, #saveSpec:hover {
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+    background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100%);
+    background-color: #dfdfdf;
+}
+/*Style for all buttons*/
+.audioInput+label, .playPause, .stop, select, #saveSpec, #buttonsMenu {
+    -moz-box-shadow: inset 0 1px 0 0 #ffffff;
+    -webkit-box-shadow: inset 0 1px 0 0 #ffffff;
+    box-shadow: inset 0 1px 0 0 #ffffff;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+    background: -moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+    border: 1px solid gray;
+    border-radius: 6px;
+}
+
+/* Center the menu buttons*/
+#buttonsMenu {
+    font-style: normal;
+    font-size: 14px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 1200px;
+    text-align: center;
+    border: 1.5px solid gray;
+    border-radius: 12px;
+    padding-top: 10px;
+}
+
+/*"Choose a file" buttone*/
+form { /*style the div*/
+    display: inline-block;
+    text-align: left;
+    text-overflow: ellipsis;;
+    width:200px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 8px;
+    vertical-align: bottom;
+}
+.audioInput {/*Hide the original button*/
+    opacity: 0;
+    overflow: hidden;
+}
+#myAudio { /*Hide the original button*/
+    width: 0px;
+    height: 0px;
+}
+.audioInput+label {/*Make a new button*/
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/*Play, Pause, Stop and Gain buttons*/
+.buttons {/*field around the buttons*/
+    display: inline-block;
+    width: auto;
+    margin-left: 30px;
+    vertical-align: super;
+}
+.playPause {/*Play and Pause button*/
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+.stop {/*Stop button*/
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+input[type=range] {/*Set width and margins of the Gain button*/
+    -webkit-appearance: none;
+    width: 130px;
+    vertical-align: middle;
+    margin-top: 13px;
+    margin-left: 20px;
+}
+input[type=range]:focus {/* Removes the blue border*/
+    outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {/*Range button style*/
+    margin-top: -13px;
+    height: 6px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    background: #ededed;
+    border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb { /*Range button style*/
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 8px;
+    border-radius: 10px;
+    background: darkgray;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -15px;
+}
+
+/*Playback time field*/
+#playbackTime {
+    display: inline-block;
+    text-shadow: 1px 1px 0px #ffffff;
+    margin-left: 20px;
+    vertical-align: super;
+}
+
+/*Check box for looping sound*/
+#loopText {
+    display: inline-block;
+    text-align: right;
+    margin-left: 120px;
+    vertical-align: super;
+}
+
+/*Choose a grid size*/
+#gridSize {
+    display: inline-block;
+    text-align: right;
+    margin-left: 40px;
+    vertical-align: super;
+}
+
+/*Dropdown menu*/
+.dropdownContainer p {/* All paragraphs from dropdown menu should have this font-size*/
+    font-size: 12px;
+}
+.dropdownContainer {/* Center the field which contains all dropdown menus*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1220px;
+    margin-top: -10px;
+}
+.dropdownBlock {/* Position and size of all dropdown blocks*/
+    display: inline-block;
+    margin-left: 5px;
+    width: 110px;
+    padding: 10px;
+    margin-top: 5px;
+}
+select {/*Position and size of all dropdown buttons*/
+    background-color: #ededed;
+    color: black;
+    height: 30px;
+    font-size: 11px;
+    cursor: pointer;
+    width: 100px;
+}
+option {/*Style and size of all option button*/
+    display: block;
+    background-color: #ededed;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+/*Position of the save spectrogram button */
+#saveSpec {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    margin-top: 10px;
+    font-size: 11px;
+    color: black;
+    padding: 11px;
+}
+
+/*Position and size of the elements of the spectrum canvas*/
+#canvasDivSpec {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 565px;
+    position: relative;
+    overflow-x: scroll;
+    border: 1px solid #bfbfbf;
+    display: block;
+    /*width: 1200px;*/
+    min-width: 1200px;
+}
+#canvasSpec {/*Spectrum*/
+    margin-left: 25px;
+    position: absolute;
+}
+#canvasSpecLine {
+    position: absolute;
+    margin-left: 25px;
+    opacity: 0.65;
+}
+#canvasSpecScale {
+    position: absolute;
+}
+#divCanvasLegend {
+    position: absolute;
+    margin-top: -80px;
+    margin-left: 905px;
+    width: 300px;
+    height: 75px;
+}
+#divSpecPosition {
+    margin-top: -550px;
+    margin-left: 40px;
+    width: 200px;
+    height: 60px;
+    line-height: 0.5;
+    background-color: rgba(250, 250, 255, 0.7);
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid gray;
+    text-align: center;
+    position: absolute;
+    z-index: 3;
+
+}
+#canvasLegend {
+    position: absolute;
+    border: 1px solid #bfbfbf;
+}
+
+.specButtonsY {
+    margin-top: -47px;
+    margin-left: 100%;
+    opacity: 0.7;
+    background-color: white;
+}
+#minusY {
+    display: block;
+    margin-top: 5px;
+    width: 23px;
+}
+
+.specButtonsX {
+    float: right;
+    opacity: 0.7;
+    background-color: white;
+}
+
+/*Position and size of the elements of the waveform canvas*/
+#canvasDivWave {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    position: relative;
+    overflow-x: scroll;
+    border: 1px solid #bfbfbf;
+    display: block;
+    min-width: 1200px;
+}
+#divWavePosition {
+    margin-top: 10px;
+    margin-left: 40px;
+    width: 160px;
+    height: 60px;
+    position: relative;
+    line-height: 0.5;
+    background-color: rgba(250, 250, 255, 0.7);
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid gray;
+    text-align: center;
+}
+#amplitudeValue {
+  color: #100C87;
+}
+#rmsValue {
+  color: #66a3ff;
+}
+
+/*Style and position of elements of the waveform canvas*/
+#canvasWave {
+    margin-left: 25px;
+    position: absolute;
+    opacity: 0.85;
+}
+#canvasSelect {
+    margin-left: 25px;
+    position: absolute;
+}
+#canvasRMS {
+    margin-left: 25px;
+    position: absolute;
+}
+#canvasWaveLine {
+    position: absolute;
+    margin-left: 25px;
+    z-index: 0;
+    opacity: 0.65;
+}
+#canvasWaveGrid {
+  margin-left: 25px;
+    position: absolute;
+}
+#canvasWaveScale {
+    position: absolute;
+}
+#progressBar {
+    border: 1px solid #aaa;
+    color: #fff;
+    width: 295px;
+    height: 20px;
+}
+#progress {
+    background-color: red;
+    height: 20px;
+    display: inline-block;
+}
+#canvas {
+    border-style: solid;
+    border-width: 1px;
+    padding: 3px;
+}
+
+/*Animation while the page is loading*/
+#loading {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 2s linear infinite;
+}
+
+
+#container {/*White container on the webpage*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0.8;
+    z-index: 9;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*Tooltips*/
+.range-container{/*style the div*/
+    position:relative;
+    display: inline-block;
+}
+.range-container .tooltiptext {/*Style the container and the text for the menu buttons*/
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    left: 60%;
+    bottom: 100%;
+    opacity: 0;
+    transition: opacity 1s;
+}
+.range-container:hover .tooltiptext {/*Make it visible when user points on it*/
+    visibility: visible;
+    opacity: 1;
+}

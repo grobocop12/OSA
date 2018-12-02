@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<!--
+index.html
+
+Copyright (C) 2016  Moritz Balter, Vlad Paul, Sascha Bilert
+IHA @ Jade Hochschule applied licence see EOF
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+contact: moritz.balters@student.jade-hs.de
+contact: sascha.bilert@student.jade-hs.de
+contact: vlad.paul@student.jade-hs.de
+-->
+
+<html lang="en">
+
+<head>
+    <!-- divine meta data of the page -->
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+
+    <!-- import the fitCanvasToDiv.js file -->
+    <script type="text/javascript" src="js/fitCanvasToDiv.js"></script>
+
+    <!-- set tab title of the website -->
+    <title>Audioanalyzer</title>
+
+    <!-- link to the masters.css stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/master.css">
+
+    <!-- import image for tab icon -->
+    <link rel="icon" type="image/png" href="image/icon.png">
+</head>
+
+<body onload="fitCanvas()" onresize="resizeCanvas()">
+
+    <!-- set image and link to github repo -->
+    <a href="https://github.com/saschabilert/audioanalyzer" target="_blank">
+        <img class="githubribbon" id="githubribbonmain" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
+            alt="Fork us on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png">
+    </a>
+
+    <!-- Create the header -->
+    <header>
+        <h1>Audioanalyzer</h1>
+        <a href="index.html" class="link">
+            <li class="currentpage">Analyzer</li>
+        </a>
+        <a href="instructions.html" class="link" target="_blank">Instructions</a>
+        <a href="about.html" class="link" target="_blank">About</a>
+    </header>
+
+    <!--Create the loading animation-->
+    <div id="container" style="display:none;"></div>
+    <img id="loading" class="rotating" src="image/icon.png" height="300px" width="300px" style="display: none">
+
+    <!-- Create a div with all the buttons above the waveform -->
+    <div id="buttonsMenu">
+        <form method="post" enctype="multipart/form-data" action="">
+            <!-- set input audiofile and trigger the audioProcessing function -->
+            <input type="file" class="audioInput" id="myAudio" name="myAudio[]" accept="audio/*" onchange="loadAudio()">
+            <label for="myAudio">Choose a file</label>
+        </form>
+        <div class="buttons">
+            <button id="player" type="button" class="playPause" disabled>&#9654;</button>
+            <button id="stop" type="button" class="stop" disabled>&#9724;</button>
+            <div class="range-container"><input id="volume" type="range" min="0" max="1" step="0.1" value="0.5" class="Gain" disabled><span class="tooltiptext">Adjust the volume
+                                         by dragging the bar</span></div>
+        </div>
+        <div id="playbackTime">00:00.0&thinsp;/&thinsp;00:00.0</div>
+        <div class="range-container">
+            <div id="loopText">Loop Selection<input type="checkbox" id="LoopCheck" onchange="setLoop(this)" disabled></div><span class="tooltiptext">Tick to loop a selected part of the audiofile</span></div>
+        <div id="gridSize">Grid Size:
+            <div class="range-container"><select id="grid" onchange="gridSize()" disabled>
+        <option value="0.0625">small</option>
+        <option value="0.125">medium</option>
+        <option value="0.25">large</option>
+      </select>
+                <span class="tooltiptext">Select the grid size of the waveform</span></div>
+        </div>
+    </div>
+
+    <!-- Create a canvas with the waveform -->
+    <div class="canvas" id="canvasDivWave">
+        <canvas id="canvasWaveScale" width="1200" height="280"></canvas>
+        <canvas id="canvasWaveGrid" width="1176" height="260"></canvas>
+        <canvas id="canvasWave" width="1176" height="260"></canvas>
+        <canvas id="canvasRMS" width="1176" height="260"></canvas>
+        <canvas id="canvasSelect" width="1176" height="260"></canvas>
+        <canvas id="canvasWaveLine" width="1176" height="260"></canvas>
+        <div id="divWavePosition">
+            <p id="waveTime">Time: </p>
+            <p id="amplitudeValue">Amplitude: </p>
+            <p id="rmsValue">RMS: </p>
+        </div>
+    </div>
+
+    <!-- Create the dropdown menu with all settings -->
+    <div class="dropdownContainer">
+        <div class="dropdownBlock">
+            <p>Block-Length:</p>
+            <div class="range-container">
+                <select id="blockLength" onchange="blockLength()">
+                        <option value="512">512</option>
+                        <option value="1024" selected>1024</option>
+                        <option value="2048">2048</option>
+                        <option value="4096">4096</option>
+                        <option value="8192">8192</option>
+                  </select>
+                <span class="tooltiptext">Increasing the block size, will increase the frequency resolution</span>
+            </div>
+        </div>
+        <div class="dropdownBlock">
+            <p>Window-Type:</p>
+            <div class="range-container">
+                <select id="windowType" onchange="windowType()">
+                     <option value="hann" selected>hann</option>
+                     <option value="rect">rectangle</option>
+                     <option value="hannpoisson">hann-poisson</option>
+                     <option value="cosine">cosine</option>
+                     <option value="flat-top">flat-top</option>
+                     <option value="hamming">hamming</option>
+                     <option value="blackman">blackman</option>
+               </select>
+                <span class="tooltiptext">Different window types in relation between smiring and selectivity</span>
+            </div>
+        </div>
+        <div class="dropdownBlock">
+            <p>Overlap:</p>
+            <div class="range-container">
+                <select id="overlap" onchange="overlap()">
+                        <option value="0.0">0%</option>
+                        <option value="0.25">25%</option>
+                        <option value="0.5" selected>50%</option>
+                        <option value="0.75">75%</option>
+                        <option value="0.9">90%</option>
+                  </select>
+                <span class="tooltiptext">Using more overlap provides more time locality resolution as well as more informational redundancy. </span>
+            </div>
+        </div>
+        <div class="dropdownBlock">
+            <p>Display-Type:</p>
+            <div class="range-container">
+                <select id="display" onchange="chooseDisplay()">
+                        <option value="Spectrum" selected>spectrum</option>
+                        <option value="Phase">phase</option>
+                        <option value="Group Delay">group delay</option>
+                        <option value="Instantaneous Frequency Deviation">instantaneous frequency deviation</option>
+                  </select>
+                <span class="tooltiptext">The display types show different information</span>
+            </div>
+        </div>
+        <div class="dropdownBlock">
+            <p>Colormap:</p>
+            <div class="range-container">
+                <select id="colormap" onchange="colormap()">
+                        <option value="1" selected>viridis</option>
+                        <option value="2">gray</option>
+                        <option value="3">jet</option>
+                        <option value="4">plasma</option>
+                        <option value="5" disabled>twilight</option>
+                        <option value="6" disabled>sunlight</option>
+                   </select>
+                <span class="tooltiptext">Select the colormap for the Spectrogram</span>
+            </div>
+        </div>
+        <div class="dropdownBlock">
+            <p>Value Range</p>
+            <div class="range-container">
+                <input type="text" id="min" onkeypress="minMaxValue(event)" placeholder="min:">
+                <input type="text" id="max" onkeypress="minMaxValue(event)" placeholder="max">
+                <span class="tooltiptext">Select min and max value of the range the colormap is applyed on</span>
+            </div>
+        </div>
+        <div class="canvas" id="divCanvasLegend">
+            <canvas id="canvasLegend" width="300" height="75"></canvas>
+        </div>
+    </div>
+
+    <!-- import javascript files -->
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/fft.js"></script>
+    <script type="text/javascript" src="js/audioprocessing.js"></script>
+    <script type="text/javascript" src="js/spectrogram.js"></script>
+    <script type="text/javascript" src="js/waveform.js"></script>
+    <script type="text/javascript" src="js/colormaps/gray.js"></script>
+    <script type="text/javascript" src="js/colormaps/jet.js"></script>
+    <script type="text/javascript" src="js/colormaps/hsv.js"></script>
+    <script type="text/javascript" src="js/colormaps/twilight.js"></script>
+    <script type="text/javascript" src="js/colormaps/viridis.js"></script>
+    <script type="text/javascript" src="js/colormaps/plasma.js"></script>
+
+
+    <!-- Create a canvas for the spectrum or for the other display types -->
+    <div class="canvas" id="canvasDivSpec">
+        <canvas id="canvasSpec" width="1176" height="512"></canvas>
+        <canvas id="canvasSpecScale" width="1200" height="540"></canvas>
+        <canvas id="canvasSpecLine" width="1176" height="512"></canvas>
+    </div>
+    <div class="specButtonsY">
+        <button id="plusY">+</button>
+        <button id="minusY">-</button>
+    </div>
+    <div class="specButtonsX">
+        <button id="minusX">-</button>
+        <button id="plusX">+</button>
+    </div>
+    <div id="divSpecPosition">
+        <p id="specTime">Time:</p>
+        <p id="specFreq">Freq:</p>
+        <p id="magnitute">Value:</p>
+    </div>
+
+    <!-- Create a button for saving the spectrum as .png format -->
+    <div class="range-container">
+        <button id="saveSpec" type="button" onclick="downloadSpectrum()" disabled>Save</button>
+        <span class="tooltiptext">Save a picture of the information displayed above</span>
+    </div>
+
+</body>
+</html>
