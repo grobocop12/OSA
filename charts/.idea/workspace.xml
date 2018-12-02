@@ -34,13 +34,13 @@
       <file leaf-file-name="poligon.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/chartGenerator/poligon.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="481" column="4" selection-start-line="481" selection-start-column="4" selection-end-line="481" selection-end-column="4" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="e#2630#2638#0#HTML" expanded="true" />
-                <element signature="e#2639#2647#0#HTML" expanded="true" />
+                <element signature="e#6889#6897#0#HTML" expanded="true" />
+                <element signature="e#6898#6906#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/css/master.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="157">
-              <caret line="96" column="76" lean-forward="true" selection-start-line="96" selection-start-column="76" selection-end-line="96" selection-end-column="76" />
+              <caret line="96" column="76" selection-start-line="96" selection-start-column="76" selection-end-line="96" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -59,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/twilight.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="54" lean-forward="true" selection-start-line="24" selection-end-line="54" />
+              <caret line="54" selection-start-line="24" selection-end-line="54" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -71,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/hsv.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+              <caret line="36" selection-start-line="24" selection-end-line="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -83,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/plasma.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+              <caret line="36" selection-start-line="24" selection-end-line="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -95,7 +95,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/viridis.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="303">
-              <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+              <caret line="36" selection-start-line="24" selection-end-line="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -107,7 +107,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/jet.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+              <caret line="36" selection-start-line="24" selection-end-line="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -119,7 +119,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/gray.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+              <caret line="36" selection-start-line="24" selection-end-line="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -131,7 +131,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/chartGenerator/menu.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="167">
-              <caret line="309" lean-forward="true" selection-start-line="309" selection-end-line="309" />
+              <caret line="309" selection-start-line="309" selection-end-line="309" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -143,7 +143,7 @@
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/chartGenerator/waveform.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="303">
-              <caret line="416" lean-forward="true" selection-start-line="25" selection-end-line="416" />
+              <caret line="416" selection-start-line="25" selection-end-line="416" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -379,9 +379,9 @@
       <window_info anchor="bottom" id="Database Changes" order="17" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="16" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="20" weight="0.2849741" />
-      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.3298791" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.3298791" />
       <window_info anchor="bottom" id="Terminal" order="19" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="15" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" sideWeight="0.62886596" visible="true" weight="0.33006042" />
@@ -690,7 +690,7 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/chartGenerator/menu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
-          <caret line="309" lean-forward="true" selection-start-line="309" selection-end-line="309" />
+          <caret line="309" selection-start-line="309" selection-end-line="309" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -700,7 +700,7 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/chartGenerator/waveform.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
-          <caret line="416" lean-forward="true" selection-start-line="25" selection-end-line="416" />
+          <caret line="416" selection-start-line="25" selection-end-line="416" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -710,7 +710,7 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/gray.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+          <caret line="36" selection-start-line="24" selection-end-line="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -720,7 +720,7 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/jet.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+          <caret line="36" selection-start-line="24" selection-end-line="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -730,7 +730,7 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/viridis.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
-          <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+          <caret line="36" selection-start-line="24" selection-end-line="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -740,7 +740,7 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/plasma.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+          <caret line="36" selection-start-line="24" selection-end-line="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -750,7 +750,7 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/hsv.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="36" lean-forward="true" selection-start-line="24" selection-end-line="36" />
+          <caret line="36" selection-start-line="24" selection-end-line="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -760,7 +760,7 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/js/colormaps/twilight.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="54" lean-forward="true" selection-start-line="24" selection-end-line="54" />
+          <caret line="54" selection-start-line="24" selection-end-line="54" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -770,19 +770,19 @@
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/css/master.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
-          <caret line="96" column="76" lean-forward="true" selection-start-line="96" selection-start-column="76" selection-end-line="96" selection-end-column="76" />
+          <caret line="96" column="76" selection-start-line="96" selection-start-column="76" selection-end-line="96" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/chartGenerator/poligon.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="481" column="4" selection-start-line="481" selection-start-column="4" selection-end-line="481" selection-end-column="4" />
+        <state relative-caret-position="17">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="e#2630#2638#0#HTML" expanded="true" />
-            <element signature="e#2639#2647#0#HTML" expanded="true" />
+            <element signature="e#6889#6897#0#HTML" expanded="true" />
+            <element signature="e#6898#6906#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

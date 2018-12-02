@@ -1,0 +1,211 @@
+/*
+ * instructionsstyle.css
+ *
+ * Copyright (C) 2016  Moritz Balter, Vlad Paul, Sascha Bilert
+ * IHA @ Jade Hochschule applied licence see EOF
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * contact: moritz.balters@student.jade-hs.de
+ * contact: sascha.bilert@student.jade-hs.de
+ * contact: vlad.paul@student.jade-hs.de
+ */
+
+p {
+    /*style of all paragraphes*/
+    position: static;
+    font-size: 13px;
+    text-align: justify;
+    margin: auto;
+    width: 800px;
+    margin-top: 40px;
+    line-height: 160%;
+    text-indent: 2em;
+}
+
+p.equation {
+    /*style of the window equations*/
+    margin-bottom: 10px;
+    line-height: 100%;
+    text-align: center;
+}
+
+p.references {
+    /*style of the references*/
+    margin-top: 0px;
+    text-indent: inherit;
+    font-style: italic;
+    text-align: left;
+    line-height: 200%;
+}
+
+ul {
+    /*style of the list items */
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    font-size: 13px;
+    list-style-type: decimal;
+    line-height: 160%;
+}
+
+ul.Frameworks {
+    /*style of the sublisting*/
+    list-style-type: circle;
+}
+
+h2 {
+    /*style of the h2 header*/
+    position: static;
+    text-align: center;
+    margin-top: 70px;
+}
+
+h3 {
+    /*style of the h3 header*/
+    text-align: left;
+    position: static;
+    margin: auto;
+    margin-top: 50px;
+    width: 800px;
+}
+
+h4 {
+    /*style of the h3 header*/
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+img.resizeImg {
+    /*style of the images*/
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5px;
+    width: 800px;
+    height: 70%;
+}
+img.resizeImg#minmaxpic{
+
+
+  width: 900px;
+  height: 90%;
+}
+
+img.resizeImg#upload {
+    /*style of the upload image*/
+    width: 700px;
+    height: 40%;
+}
+
+figcaption {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 800px;
+    margin-top: 30px;
+}
+
+tr, th, td {
+    margin: auto;
+    text-align: left;
+    font-size: 13px;
+    border: 1px solid black;
+}
+
+th {
+    text-align: center;
+}
+
+td.number {
+    text-align: right;
+}
+
+td.none {
+    text-align: center;
+}
+
+td.disabled {
+    background-color: gray;
+}
+
+caption {
+    margin-top: 6px;
+    font-size: 13px;
+    caption-side: bottom;
+}
+
+div.plot {
+    /*style of the plotly divs*/
+    position: static;
+    margin: auto;
+    width: 800px;
+    height: 600px;
+}
+
+pre.code {
+    /*style the rainbow code divs*/
+    position: static;
+    margin: auto;
+    margin-top: 20px;
+    width: 800px;
+    height: auto;
+    overflow: scroll;
+}
+
+ul.navigation {
+    /*style the field around the page navigation*/
+    position: fixed;
+    list-style-type: none;
+    padding: 0px;
+    width: 165px;
+}
+
+a.naviItems {
+    /*style of the navigation buttons*/
+    cursor: pointer;
+    display: inline-block;
+    background-color: lightgray;
+    color: black;
+    font-size: 14px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+    text-decoration: none;
+    border-radius: 2px;
+    width: 160px;
+    height: 20px;
+    padding-top: 5px;
+    margin-top: 1px;
+    text-align: center;
+    border: 0.5px solid gray;
+}
+
+a.naviItems:hover {
+    /*style of the hover pointing on navigation buttons*/
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+    background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100%);
+    background-color: #dfdfdf;
+}
+li.grayBackground{
+  background-color: gray;
+  width: 60px;
+
+}
