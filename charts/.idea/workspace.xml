@@ -34,13 +34,13 @@
       <file leaf-file-name="poligon.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/chartGenerator/templates/chartGenerator/poligon.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+            <state relative-caret-position="51">
+              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="e#6889#6897#0#HTML" expanded="true" />
-                <element signature="e#6898#6906#0#HTML" expanded="true" />
+                <element signature="e#2630#2638#0#HTML" expanded="true" />
+                <element signature="e#2639#2647#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -776,13 +776,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chartGenerator/templates/chartGenerator/poligon.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        <state relative-caret-position="51">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="e#6889#6897#0#HTML" expanded="true" />
-            <element signature="e#6898#6906#0#HTML" expanded="true" />
+            <element signature="e#2630#2638#0#HTML" expanded="true" />
+            <element signature="e#2639#2647#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
