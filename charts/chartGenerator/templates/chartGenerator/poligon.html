@@ -1,0 +1,81 @@
+<head>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<div id="tester" style="width:100%;height:75%;"/>
+
+
+<script>
+
+	{% if rawData %}
+		var rawData = {{rawData}};
+	{% endif %}
+	
+	
+	var plot = document.getElementById('tester');
+	
+	var counter = 0;
+
+	 var data = [{
+			x: {{time}},
+			y: {{signal}},
+			mode:'lines'
+			}];
+
+
+	var layout = {
+	title:'Audio signal',
+	xaxis: {
+			title:"Time [s]",
+            rangeslider: {}
+
+        	},
+	margin: { t: 0 },
+	yaxis: {
+			title:"Pressure [Pa]"
+        },
+		 shapes: []
+
+	};
+
+
+	Plotly.plot( plot, data,layout);
+	
+	plot.on('plotly_click', function(data)
+	{
+	var pts = '';
+	for(var i=0; i < data.points.length; i++)
+		{
+	        pts = data.points[i].x ;
+		
+	//alert('Closest point clicked:\n\n'+annotate_text);
+		var shapes = plot.layout.shapes;
+		if(counter < 2)
+			{
+		shapes.push(
+				{
+			    	 type: 'line',
+			   	 x0: pts,
+			   	 y0: 0,
+			  	 x1: pts,
+			  	 yref: 'paper',
+				 y1: 1,
+			   	 line: {
+				      	color: 'red',
+				      	width: 1.5,
+				     	 dash: 'dot'
+			    		}
+			  	});
+
+	       
+				counter++;
+			}
+			else
+			{
+				shapes =[];
+				counter = 0;
+			}
+			 Plotly.relayout('tester',{shapes: shapes});
+    		}
+	});
+
+</script>

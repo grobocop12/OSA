@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Full view</title>
+</head>
+
+<body>
+<div>
+{% if signal %}
+{{signal|safe}}
+{% endif %}
+</div>
+<div>
+{% if spect %}
+{{spect|safe}}
+{% endif %}
+</div>
+<div>
+{% if histogram %}
+{{histogram|safe}}
+{% endif %}
+</div>
+<marque><b>zgubiles pogrubienie :( </b></marque>
+</body>
+</html>
