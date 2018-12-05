@@ -35,8 +35,8 @@ def dummy_data(N,fs):
     return fs, y
 
 def load_data():
-    #sample_rate, samples = wavfile.read('Bit - Hacknet OST - 08 You Got Mail.wav')
-    sample_rate, samples = wavfile.read('mono2.wav')
+    sample_rate, samples = wavfile.read('Bit - Hacknet OST - 08 You Got Mail.wav')
+    #sample_rate, samples = wavfile.read('mono2.wav')
     #sample_rate, samples = dummy_data(10000,128)
     return sample_rate , samples
 
@@ -121,7 +121,7 @@ def poligon():
     sample_rate , samples = load_data()
     N = len(samples)
     T = N/sample_rate
-    samples = signal.decimate(samples,100,  ftype='fir')
+    samples = signal.decimate(samples,10,  ftype='fir')
     N = len(samples)
     dT = T/len(samples)
     time = np.arange(0,len(samples),dtype = float)
