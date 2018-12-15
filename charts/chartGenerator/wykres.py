@@ -126,6 +126,7 @@ def poligon():
     dT = T/len(samples)
     time = np.arange(0,len(samples),dtype = float)
     time = np.multiply(time,dT)
-    
-   
     return samples, time
+
+def handle_uploaded_file(f):
+    print(f.name)
