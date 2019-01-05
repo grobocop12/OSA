@@ -44,24 +44,20 @@ def test(request):
 
 @csrf_exempt
 def upload_file(request):
-    '''if request.method == 'POST':
+    if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(request.FILES['file'])
-            return HttpResponseRedirect('chartGenerator/chart/')
+            sample_rate, samples = wykres.handle_uploaded_file(request.FILES['file'])
+            return poligon(request,sample_rate,samples)
     else:
         form = UploadFileForm()
-    return render(request, 'chartGenerator/upload.html', {'form': form})'''
-    if request.method =='POST':
-        uploaded_file = request.FILES['file']
-        print(uploaded_file.name)
-    return render(request, 'chartGenerator/upload.html')
+    return render(request, 'chartGenerator/upload.html', {'form': form})
+    
 
-
-def poligon(request):
+def poligon(request,sample_rate,samples):
     size = (16, 8)
-    sample_rate, samples = wykres.load_data()
-    signal, time = wykres.poligon()
+    
+    signal, time = wykres.poligon(sample_rate,samples)
     return render(request,'chartGenerator/poligon.html',{'rawData':json.dumps(samples.tolist()),'time':json.dumps(time.tolist()),'signal':json.dumps(signal.tolist())})
     
 

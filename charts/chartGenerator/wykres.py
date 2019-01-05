@@ -117,8 +117,7 @@ def test_plot(sample_rate , samples,size):
     ax2.specgram(samples, NFFT=NFFT, Fs=sample_rate, noverlap=0)  # Druga zmienna
     return mpld3.fig_to_html(fig)
 
-def poligon():
-    sample_rate , samples = load_data()
+def poligon(sample_rate,samples):
     N = len(samples)
     T = N/sample_rate
     samples = signal.decimate(samples,10,  ftype='fir')
@@ -129,4 +128,5 @@ def poligon():
     return samples, time
 
 def handle_uploaded_file(f):
-    print(f.name)
+    sample_rate, samples = wavfile.read(f)
+    return sample_rate, samples
