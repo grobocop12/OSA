@@ -60,7 +60,7 @@ def poligon(request,sample_rate,samples):
 
 
     signal, time = wykres.poligon(sample_rate,samples)
-    spect = wykres.spectimg(sample_rate,samples)
-    return render(request,'chartGenerator/poligon.html',{'rawData':json.dumps(samples.tolist()),'time':json.dumps(time.tolist()),'signal':json.dumps(signal.tolist()),'spect':json.dumps(spect.tolist())})
+    spect, frequencies ,times = wykres.spectimg(sample_rate,samples)
+    return render(request,'chartGenerator/poligon.html',{'rawData':json.dumps(samples.tolist()),'time':json.dumps(time.tolist()),'signal':json.dumps(signal.tolist()),'spect':json.dumps(spect.tolist()),'fq':json.dumps(frequencies.tolist()),'t':json.dumps(times.tolist())})
     
 
