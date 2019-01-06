@@ -9,20 +9,48 @@
 	{% if rawData %}
 		var rawData = {{rawData}};
 	{% endif %}
+
+
+    {% if spect %}
+		var specdata = {{spect}};
+	{% endif %}
 	
 	
 	var plot = document.getElementById('tester');
 	
 	var counter = 0;
 
+	var spect = {
+
+    z: specdata,
+    colorbar: {title: 'dB'},
+    colorscale: [['0', 'rgb(0,0,0)'], ['0.15', 'rgb(30,0,100)'], ['0.4', 'rgb(120,0,100)'], ['0.6', 'rgb(160,90,0)'], ['0.8', 'rgb(230,200,0)'], ['1', 'rgb(255,250,220)']],
+    dx: 1,
+    dy: 40000,
+    name: 'dB',
+    type: 'heatmap',
+    uid: 'b1c78a',
+    x0: 0,
+    y0: 0,
+    zauto: false,
+    zmax: 27.6869660718,
+    zmin: -40.0928872911
+
+    }
+
 	 var data = [{
 			x: {{time}},
 			y: {{signal}},
 			mode:'lines'
-			}];
+			},spect];
 
 
 	var layout = {
+
+	    grid: {
+	        rows: 2,
+        columns: 1,
+        },
 	title:'Audio signal',
 	xaxis: {
 			title:"Time [s]",
@@ -78,4 +106,7 @@
     		}
 	});
 
+
+
 </script>
+
