@@ -130,3 +130,17 @@ def poligon(sample_rate,samples):
 def handle_uploaded_file(f):
     sample_rate, samples = wavfile.read(f)
     return sample_rate, samples
+
+def spectimg(sample_rate,samples):
+    window_size = 100
+
+    window = signal.tukey(M=window_size, alpha=0.25)
+    fig = plt.figure()
+    frequencies, times, spectrogram = signal.spectrogram(samples,sample_rate,window=window)
+    max  = spectrogram.max()
+    min = spectrogram.min()
+    print(frequencies.tolist())
+    print(times.tolist())
+    return spectrogram, frequencies, times
+
+
