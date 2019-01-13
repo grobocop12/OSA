@@ -87,16 +87,18 @@
 		 shapes: []
 
 	};
-
+	
+	var pts = [];
 
 	Plotly.plot( plot, data,layout);
 	
 	plot.on('plotly_click', function(data)
 	{
-	var pts = '';
+	
 	for(var i=0; i < data.points.length; i++)
 		{
-	        pts = data.points[i].x ;
+	        pts.push(data.points[i].x);
+			console.log(data.points[i].x); 
 		
 	//alert('Closest point clicked:\n\n'+annotate_text);
 		var shapes = plot.layout.shapes;
@@ -105,9 +107,9 @@
 		shapes.push(
 				{
 			    	 type: 'line',
-			   	 x0: pts,
+			   	 x0: data.points[i].x,
 			   	 y0: 0,
-			  	 x1: pts,
+			  	 x1: data.points[i].x,
 			  	 yref: 'paper',
 				 y1: 1,
 			   	 line: {
@@ -128,8 +130,28 @@
 			 Plotly.relayout('tester',{shapes: shapes});
     		}
 	});
+	
+	
+	function download()
+	{
+		console.log('download');
+		if(counter ==2){
+			const Url = "/chartGenerator/download/";
+			const data = pts;
+			const otherParam={
+			body:data,
+			method:"POST"
+			};
+			fetch(Url,otherParam)
+			.then(data=>{return JSON.stringify(data)});
+                
+		}
+	}
 
 
 
 </script>
+{% csrf_token %}
+<button onclick="download()">download</button>
+ 
 

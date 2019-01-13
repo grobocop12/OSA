@@ -10,5 +10,6 @@ urlpatterns = [
     path('base/',views.base, name= 'base'),
     path('test/',views.test,name = 'test'),
     path('poligon/',views.poligon,name = 'poligon'),
-    path('upload/',views.upload_file, name='upload')
+    path('upload/',views.upload_file, name='upload'),
+    path('download/',views.download_file, name='download')
     ]

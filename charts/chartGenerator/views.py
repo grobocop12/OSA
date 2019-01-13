@@ -52,6 +52,14 @@ def upload_file(request):
     else:
         form = UploadFileForm()
     return render(request, 'chartGenerator/upload.html', {'form': form})
+
+@csrf_exempt
+def download_file(request):
+    
+    data = request.POST.items
+    print(data)
+        
+    return render(request, 'chartGenerator/download.html')
     
 
 def poligon(request,sample_rate,samples):

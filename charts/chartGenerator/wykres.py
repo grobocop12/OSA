@@ -139,8 +139,6 @@ def spectimg(sample_rate,samples):
     frequencies, times, spectrogram = signal.spectrogram(samples,sample_rate,window=window)
     max  = spectrogram.max()
     min = spectrogram.min()
-    print(frequencies.tolist())
-    print(times.tolist())
     return spectrogram, frequencies, times
 
 
