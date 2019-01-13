@@ -136,15 +136,10 @@
 	{
 		console.log('download');
 		if(counter ==2){
-			const Url = "/chartGenerator/download/";
-			const data = pts;
-			const otherParam={
-			body:data,
-			method:"POST"
-			};
-			fetch(Url,otherParam)
-			.then(data=>{return JSON.stringify(data)});
-                
+			const Url = "/chartGenerator/download/?start="+pts[0]+"&stop="+pts[1];
+		
+//fetch(Url);
+			window.open(Url);
 		}
 	}
 
