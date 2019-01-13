@@ -7,7 +7,9 @@ from django.shortcuts import render
 from .models import Document
 from .forms import DocumentForm
 import json
-
+from .forms import UploadFileForm
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.generic import TemplateView
 
 
 def index(request):
@@ -40,21 +42,22 @@ def test(request):
     coś = wykres.test_plot(sample_rate,samples,size)
     return render(request,'chartGenerator/test.html',{'test':coś,})
 
+@csrf_exempt
 def upload_file(request):
     if request.method == 'POST':
-        form = Document(request.POST, request.FILES)
+        form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            instance = DocumentForm(file_field=request.FILES['file'])
-            instance.save()
-            return HttpResponseRedirect('/success/url/')
+            sample_rate, samples = wykres.handle_uploaded_file(request.FILES['file'])
+            return poligon(request,sample_rate,samples)
     else:
-        form = Document()
+        form = UploadFileForm()
     return render(request, 'chartGenerator/upload.html', {'form': form})
+    
 
-def poligon(request):
+def poligon(request,sample_rate,samples):
     size = (16, 8)
-    sample_rate, samples = wykres.load_data()
-    signal, time = wykres.poligon()
+    
+    signal, time = wykres.poligon(sample_rate,samples)
     return render(request,'chartGenerator/poligon.html',{'rawData':json.dumps(samples.tolist()),'time':json.dumps(time.tolist()),'signal':json.dumps(signal.tolist())})
     
 
