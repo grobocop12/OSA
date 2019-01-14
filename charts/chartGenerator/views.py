@@ -13,6 +13,13 @@ from django.views.generic import TemplateView
 import numpy as np
 import scipy.io.wavfile as wavfile
 import io
+import wave
+import struct
+import os
+import base64
+import django.core.files
+import mimetypes
+from django.core.files.base import ContentFile
 
 
 def index(request):
@@ -42,14 +49,15 @@ def base(request):
 def test(request):
     size = (12, 6)
     sample_rate, samples = wykres.load_data()
-    coś = wykres.test_plot(sample_rate,samples,size)
-    return render(request,'chartGenerator/test.html',{'test':coś,})
+    cos = wykres.test_plot(sample_rate,samples,size)
+    return render(request,'chartGenerator/test.html',{'test':cos,})
 
 @csrf_exempt
 def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
+            
             sample_rate, samples = wykres.handle_uploaded_file(request.FILES['file'])
             request.session['sample_rate'] = sample_rate
             request.session['samples'] = samples.tolist()
@@ -69,7 +77,7 @@ def download_file(request):
         samples = np.asanyarray(request.session['samples'])
         T = len(samples)/sample_rate
         print(T)
-        dT = T/len(samples)
+        dT = 1/sample_rate
         
         #time = np.asanyarray(request.session['time'])
         time = np.arange(0,len(samples),dtype = float)
@@ -78,8 +86,37 @@ def download_file(request):
         first = np.where(time>start)[0][0]
         last = np.where(time<stop)[-1][-1]
         samples = samples[first:last]
-        print(samples)
-        wavfile.write('tempfiles/temp.wav', sample_rate, samples)        
+        print(first, last)
+        print(samples.shape)
+        file_name = 'temp.wav'
+        file_full_path = "tempfiles/{0}".format(file_name)
+        fout = wave.open(file_full_path,'wb')
+        fout.setnchannels(1)
+        fout.setsampwidth(2)
+        fout.setframerate(sample_rate)
+        fout.setcomptype('NONE','Not Compressed')
+        BinStr=b''
+        for i in range(len(samples)):
+            BinStr = BinStr + struct.pack('h',samples[i])
+        fout.writeframesraw(BinStr)
+        fout.close()
+        
+        #string_to_return = get_the_string() # get the string you want to return.
+        file_to_send = ContentFile(file_name)
+        
+        
+        with open(file_full_path,'rb') as f:
+            data = f.read()
+            
+        response = HttpResponse(data, content_type=mimetypes.guess_type(file_full_path)[0])
+        response['Content-Disposition'] = "attachment; filename={0}".format(file_name)
+        response['Content-Length'] = os.path.getsize(file_full_path)
+        response.streaming = True
+        
+        return response
+        #return render(request, 'chartGenerator/download.html',{'file':base64.b64encode(data)})       
+        
+    
         
         
     return render(request, 'chartGenerator/download.html')
