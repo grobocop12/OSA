@@ -9,96 +9,43 @@
 	{% if rawData %}
 		var rawData = {{rawData}};
 	{% endif %}
-
-
-    {% if spect %}
-		var specdata = {{spect}};
-	{% endif %}
-    {% if meta %}
-		var meta = {{meta}};
-	{% endif %}
-
-    {% if fq %}
-		var fs = {{fq}};
-	{% endif %}
-
-    {% if t %}
-		var t = {{t}};
-	{% endif %}
 	
 	
 	var plot = document.getElementById('tester');
 	
 	var counter = 0;
 
-	var spect = {
-
-	x: t,
-    y: fs,
-    z: specdata,
-    colorbar: {title: 'dB'},
-    colorscale: [['0', 'rgb(0,0,0)'], ['0.0001', 'rgb(30,10,100)'], ['0.001', 'rgb(120,20,100)'], ['0.01', 'rgb(160,90,0)'], ['0.1', 'rgb(230,200,0)'], ['1', 'rgb(255,250,220)']],
-    dx: 1,
-    dy: 1000,
-    name: 'power',
-    type: 'heatmap',
-    uid: 'b1c78a',
-    x0: 0,
-    y0: 0,
-    zauto: false,
-    zmax: 500,
-    zmin: 0,
-    xaxis: 'x',
-    yaxis: 'y',
-
-    }
-
 	 var data = [{
 			x: {{time}},
 			y: {{signal}},
-			mode:'lines',
-            type: 'scatter',
-            xaxis: 'x',
-            yaxis: 'y2',
-
-			},spect,];
+			mode:'lines'
+			}];
 
 
 	var layout = {
-
-	    grid: {
-	    rows: 2,
-        columns: 1,
-            subplots:[['xy'], ['xy2']],
-
-
-
-        },
 	title:'Audio signal',
 	xaxis: {
-            title:"time [s]",
+			title:"Time [s]",
             rangeslider: {}
 
         	},
 	margin: { t: 0 },
 	yaxis: {
-			title:"Frequfency [Hz]"
+			title:"Pressure [Pa]"
         },
 		 shapes: []
 
 	};
-	
-	var pts = [];
+
 
 	Plotly.plot( plot, data,layout);
 	
 	plot.on('plotly_click', function(data)
 	{
-	
+	var pts = '';
 	for(var i=0; i < data.points.length; i++)
 		{
-	        pts.push(data.points[i].x);
-			console.log(data.points[i].x); 
+	        pts = data.points[i].x ;
 		
 	//alert('Closest point clicked:\n\n'+annotate_text);
 		var shapes = plot.layout.shapes;
@@ -107,9 +54,9 @@
 		shapes.push(
 				{
 			    	 type: 'line',
-			   	 x0: data.points[i].x,
+			   	 x0: pts,
 			   	 y0: 0,
-			  	 x1: data.points[i].x,
+			  	 x1: pts,
 			  	 yref: 'paper',
 				 y1: 1,
 			   	 line: {
@@ -126,28 +73,9 @@
 			{
 				shapes =[];
 				counter = 0;
-				pts = []
 			}
 			 Plotly.relayout('tester',{shapes: shapes});
     		}
 	});
-	
-	
-	function download()
-	{
-		console.log('download');
-		if(counter ==2){
-			const Url = "/download/?start="+pts[0]+"&stop="+pts[1];
-		
-//fetch(Url);
-			window.open(Url);
-		}
-	}
-
-
 
 </script>
-{% csrf_token %}
-<button onclick="download()">Cut</button>
- 
-

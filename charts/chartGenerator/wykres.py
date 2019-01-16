@@ -117,7 +117,8 @@ def test_plot(sample_rate , samples,size):
     ax2.specgram(samples, NFFT=NFFT, Fs=sample_rate, noverlap=0)  # Druga zmienna
     return mpld3.fig_to_html(fig)
 
-def poligon(sample_rate,samples):
+def poligon():
+    sample_rate , samples = load_data()
     N = len(samples)
     T = N/sample_rate
     samples = signal.decimate(samples,10,  ftype='fir')
@@ -125,20 +126,6 @@ def poligon(sample_rate,samples):
     dT = T/len(samples)
     time = np.arange(0,len(samples),dtype = float)
     time = np.multiply(time,dT)
+    
+   
     return samples, time
-
-def handle_uploaded_file(f):
-    sample_rate, samples = wavfile.read(f)
-    return sample_rate, samples
-
-def spectimg(sample_rate,samples):
-    window_size = 100
-
-    window = signal.tukey(M=window_size, alpha=0.25)
-    fig = plt.figure()
-    frequencies, times, spectrogram = signal.spectrogram(samples,sample_rate,window=window)
-    max  = spectrogram.max()
-    min = spectrogram.min()
-    return spectrogram, frequencies, times
-
-
