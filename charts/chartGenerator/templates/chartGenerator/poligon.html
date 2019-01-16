@@ -9,80 +9,29 @@
 	{% if rawData %}
 		var rawData = {{rawData}};
 	{% endif %}
-
-
-    {% if spect %}
-		var specdata = {{spect}};
-	{% endif %}
-    {% if meta %}
-		var meta = {{meta}};
-	{% endif %}
-
-    {% if fq %}
-		var fs = {{fq}};
-	{% endif %}
-
-    {% if t %}
-		var t = {{t}};
-	{% endif %}
 	
 	
 	var plot = document.getElementById('tester');
 	
 	var counter = 0;
 
-	var spect = {
-
-	x: t,
-    y: fs,
-    z: specdata,
-    colorbar: {title: 'dB'},
-    colorscale: [['0', 'rgb(0,0,0)'], ['0.15', 'rgb(30,10,100)'], ['0.4', 'rgb(120,20,100)'], ['0.6', 'rgb(160,90,0)'], ['0.8', 'rgb(230,200,0)'], ['1', 'rgb(255,250,220)']],
-    dx: 1,
-    dy: 1000,
-    name: 'dB',
-    type: 'heatmap',
-    uid: 'b1c78a',
-    x0: 0,
-    y0: 0,
-    zauto: false,
-    zmax: 500,
-    zmin: -50,
-    xaxis: 'x',
-    yaxis: 'y',
-
-    }
-
 	 var data = [{
 			x: {{time}},
 			y: {{signal}},
-			mode:'lines',
-            type: 'scatter',
-            xaxis: 'x',
-            yaxis: 'y2',
-
-			},spect,];
+			mode:'lines'
+			}];
 
 
 	var layout = {
-
-	    grid: {
-	    rows: 2,
-        columns: 1,
-            subplots:[['xy'], ['xy2']],
-
-
-
-        },
 	title:'Audio signal',
 	xaxis: {
-            title:"time [s]",
+			title:"Time [s]",
             rangeslider: {}
 
         	},
 	margin: { t: 0 },
 	yaxis: {
-			title:"Frequfency [Hz]"
+			title:"Pressure [Pa]"
         },
 		 shapes: []
 
@@ -129,7 +78,4 @@
     		}
 	});
 
-
-
 </script>
-
