@@ -137,7 +137,7 @@
 	{
 		console.log('download');
 		if(counter ==2){
-			const Url = "/chartGenerator/download/?start="+pts[0]+"&stop="+pts[1];
+			const Url = "/download/?start="+pts[0]+"&stop="+pts[1];
 		
 //fetch(Url);
 			window.open(Url);
@@ -148,6 +148,6 @@
 
 </script>
 {% csrf_token %}
-<button onclick="download()">download</button>
+<button onclick="download()">Cut</button>
  
 

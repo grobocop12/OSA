@@ -20,6 +20,7 @@ import base64
 import django.core.files
 import mimetypes
 from django.core.files.base import ContentFile
+import uuid
 
 
 def index(request):
@@ -70,25 +71,25 @@ def upload_file(request):
 @csrf_exempt
 def download_file(request):
     if request.method == 'GET':
-        #print('GET REQUEST!!!')
         start = float(request.GET.get('start'))
         stop = float(request.GET.get('stop'))
+        
+        if start < stop:
+            t = start
+            start = stop
+            stop = t
+        
         sample_rate = request.session['sample_rate']
         samples = np.asanyarray(request.session['samples'])
-        T = len(samples)/sample_rate
-        print(T)
         dT = 1/sample_rate
-        
-        #time = np.asanyarray(request.session['time'])
         time = np.arange(0,len(samples),dtype = float)
         time = np.multiply(time,dT)
         
         first = np.where(time>start)[0][0]
         last = np.where(time<stop)[-1][-1]
         samples = samples[first:last]
-        print(first, last)
-        print(samples.shape)
-        file_name = 'temp.wav'
+        
+        file_name =  str(uuid.uuid4())+'.wav'
         file_full_path = "tempfiles/{0}".format(file_name)
         fout = wave.open(file_full_path,'wb')
         fout.setnchannels(1)
@@ -105,17 +106,17 @@ def download_file(request):
         file_to_send = ContentFile(file_name)
         
         
+        
         with open(file_full_path,'rb') as f:
             data = f.read()
-            
+        
+        
         response = HttpResponse(data, content_type=mimetypes.guess_type(file_full_path)[0])
         response['Content-Disposition'] = "attachment; filename={0}".format(file_name)
         response['Content-Length'] = os.path.getsize(file_full_path)
         response.streaming = True
-        
+        os.remove(file_full_path)
         return response
-        #return render(request, 'chartGenerator/download.html',{'file':base64.b64encode(data)})       
-        
     
         
         
