@@ -58,11 +58,11 @@ def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            
+
             sample_rate, samples = wykres.handle_uploaded_file(request.FILES['file'])
             request.session['sample_rate'] = sample_rate
             request.session['samples'] = samples.tolist()
-            
+
             return poligon(request,sample_rate,samples)
     else:
         form = UploadFileForm()
@@ -73,26 +73,26 @@ def download_file(request):
     if request.method == 'GET':
         start = float(request.GET.get('start'))
         stop = float(request.GET.get('stop'))
-        
+
         if start > stop:
             t = start
             start = stop
             stop = t
-        
+
         sample_rate = request.session['sample_rate']
         samples = np.asanyarray(request.session['samples'])
         dT = 1/sample_rate
         time = np.arange(0,len(samples),dtype = float)
         time = np.multiply(time,dT)
-        
+
         first = np.where(time>start)[0][0]
         last = np.where(time<stop)[-1][-1]
         samples = samples[first:last]
-        
-        
+
+
         file_name =  str(uuid.uuid4())+'.wav'
-        file_full_path = "tempfiles/{0}".format(file_name)
-        
+        file_full_path = "{0}".format(file_name)
+
         fout = wave.open(file_full_path,'wb')
         fout.setnchannels(1)
         fout.setsampwidth(2)
@@ -103,7 +103,7 @@ def download_file(request):
             BinStr = BinStr + struct.pack('h',samples[i])
         fout.writeframesraw(BinStr)
         fout.close()
-        
+
 
         #string_to_return = get_the_string() # get the string you want to return.
         file_to_send = ContentFile(file_name)
@@ -111,18 +111,18 @@ def download_file(request):
 
         with open(file_full_path,'rb') as f:
             data = f.read()
-        
+
         response = HttpResponse(data, content_type=mimetypes.guess_type(file_full_path)[0])
         response['Content-Disposition'] = "attachment; filename={0}".format(file_name)
         response['Content-Length'] = os.path.getsize(file_full_path)
         response.streaming = True
         os.remove(file_full_path)
         return response
-        
-            
-            
+
+
+
     return render(request, 'chartGenerator/download.html')
-    
+
 
 def poligon(request,sample_rate,samples):
     size = (16, 8)
@@ -130,5 +130,5 @@ def poligon(request,sample_rate,samples):
     #request.session['time'] = time.tolist()
     spect, frequencies ,times = wykres.spectimg(sample_rate,samples)
     return render(request,'chartGenerator/poligon.html',{'rawData':json.dumps(samples.tolist()),'time':json.dumps(time.tolist()),'signal':json.dumps(signal.tolist()),'spect':json.dumps(spect.tolist()),'fq':json.dumps(frequencies.tolist()),'t':json.dumps(times.tolist())})
-    
+
 

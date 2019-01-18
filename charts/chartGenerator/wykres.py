@@ -3,28 +3,8 @@
 import scipy.io.wavfile as wavfile
 from scipy import signal
 import matplotlib.pyplot as plt
-import mpld3
 import io
 import numpy as np
-import pandas as pd
-import mpld3.plugins as plugins
-from matplotlib.transforms import (
-    Bbox, TransformedBbox, blended_transform_factory)
-from mpl_toolkits.axes_grid1.inset_locator import (
-    BboxPatch, BboxConnector, BboxConnectorPatch)
-
-from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
-from mpl_toolkits.axes_grid1.inset_locator import mark_inset
-import json
-
-
-class HelloWorld(plugins.PluginBase):  # inherit from PluginBase
-    """Hello World plugin"""
-
-    JAVASCRIPT = """chartGenerator / Javascripts / helloworld.js"""
-    def __init__(self):
-        self.dict_ = {"type": "helloworld"}
-        
 
 
 def dummy_data(N,fs):
@@ -85,7 +65,7 @@ def plot_spect(sample_rate , samples,size):
     NFFT = 256  # the length of the windowing segments
     time = np.arange(0,len(samples),dtype = float)
     time = np.divide(time, sample_rate)
-    
+
 
     fig = plt.figure()
     fig.set_figwidth(width)
@@ -96,7 +76,7 @@ def plot_spect(sample_rate , samples,size):
     plt.xlabel('Czas [s]')
     plt.grid()
     plt.tight_layout()
-    
+
     return mpld3.fig_to_html(fig)
 
 
