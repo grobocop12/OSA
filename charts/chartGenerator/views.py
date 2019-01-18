@@ -74,7 +74,7 @@ def download_file(request):
         start = float(request.GET.get('start'))
         stop = float(request.GET.get('stop'))
         
-        if start < stop:
+        if start > stop:
             t = start
             start = stop
             stop = t
@@ -89,8 +89,10 @@ def download_file(request):
         last = np.where(time<stop)[-1][-1]
         samples = samples[first:last]
         
+        
         file_name =  str(uuid.uuid4())+'.wav'
         file_full_path = "tempfiles/{0}".format(file_name)
+        
         fout = wave.open(file_full_path,'wb')
         fout.setnchannels(1)
         fout.setsampwidth(2)
@@ -102,14 +104,13 @@ def download_file(request):
         fout.writeframesraw(BinStr)
         fout.close()
         
+
         #string_to_return = get_the_string() # get the string you want to return.
         file_to_send = ContentFile(file_name)
-        
-        
-        
+
+
         with open(file_full_path,'rb') as f:
             data = f.read()
-        
         
         response = HttpResponse(data, content_type=mimetypes.guess_type(file_full_path)[0])
         response['Content-Disposition'] = "attachment; filename={0}".format(file_name)
@@ -117,9 +118,9 @@ def download_file(request):
         response.streaming = True
         os.remove(file_full_path)
         return response
-    
         
-        
+            
+            
     return render(request, 'chartGenerator/download.html')
     
 
