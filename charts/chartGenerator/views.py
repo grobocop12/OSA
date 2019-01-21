@@ -48,10 +48,8 @@ def base(request):
     return render(request,'chartGenerator/spectogram.html',{'spect':spect,})
 
 def test(request):
-    size = (12, 6)
-    sample_rate, samples = wykres.load_data()
-    cos = wykres.test_plot(sample_rate,samples,size)
-    return render(request,'chartGenerator/test.html',{'test':cos,})
+   
+    return render(request,'chartGenerator/test.html')
 
 @csrf_exempt
 def upload_file(request):
